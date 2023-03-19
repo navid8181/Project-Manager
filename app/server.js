@@ -1,10 +1,11 @@
- module.exports =  class Application {
+const {allRoutes} = require('./routers/router');
+
+module.exports = class Application {
     #express = require('express');
     #app = this.#express();
     constructor(PORT, DB_URL) {
-
-        this.#configDataBase(DB_URL);
         this.#configApplication();
+        this.#configDataBase(DB_URL);
         this.#createServer(PORT);
         this.#createRoute();
         this.#errorHandler();
@@ -35,12 +36,12 @@
         const mongoose = require('mongoose');
 
         try {
-            const result =  mongoose.connect(DB_URL);
+            const result = mongoose.connect(DB_URL);
             console.log("connect to db is Successful");
         } catch (error) {
             throw error;
         }
-       
+
 
     }
 
@@ -57,17 +58,22 @@
             const status = err ?. status || 500;
 
             const message = err ?. message || "internal server error";
-            return res.status(status).json({statusCode, succeed: false, message});
+            return res.status(status).json({status, succeed: false, message});
 
         })
     }
 
     #createRoute() {
 
-        this.#app.get('/', (req, res, nex) => {
-            res.json({
-                message: "this is a express app"
-            })
+        this.#app.get('/', (req, res, next) => {
+            res.json({message: "this is a express app"})
         })
+
+        try {
+            this.#app.use(allRoutes); 
+        } catch (error) {
+            next(error)
+        }
+       
     }
 }
