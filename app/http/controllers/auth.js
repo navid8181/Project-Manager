@@ -1,23 +1,19 @@
 const { validationResult } = require("express-validator");
-const { expressValidatorMapper } = require("../../modules/function");
+const { expressValidatorMapper, hashString } = require("../../modules/function");
+const { userModel } = require("../../models/user");
 
 
 
 class AuthController{
 
-    register(req,res,next){
+    async register (req,res,next){
 
-        const {username,password,email,mobile} = req.body;
-        console.log(req.body);
-        const result = validationResult (req);
+        const  {username,password,email,mobile} = req.body;
 
-
-        if (result?.errors?.length >0){
-            const messages = expressValidatorMapper(result.errors);
-            return res.status(400).json(messages)
-        }
-
-        return res.json(result)
+        const hashPassword = hashString(password)
+        
+       const result = await  userModel.create({username,mobile,email,password :hashPassword})
+        res.json("result")
     }
 
     login(){

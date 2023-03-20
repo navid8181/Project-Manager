@@ -21,7 +21,7 @@ const userShema = new mongoose.Schema({
         unique: true
     },
     roles: {
-        type: String,
+        type: [String],
         default : ['USER']
     },
     email: {
@@ -34,11 +34,11 @@ const userShema = new mongoose.Schema({
         required: true
     },
     skills: {
-        type: String,
+        type: [String],
         default : []
     },
     teams: {
-        type: String,
+        type: [mongoose.Types.ObjectId],
         default : []
     }
 

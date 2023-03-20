@@ -3,9 +3,9 @@ POST http://localhost:3000/auth/register HTTP/1.1
 content-type: application/json
 
 {
-    "username": "gdggd4",
-    "email": "sfsf@gmail.com",
-    "mobile": "09103914576",
-    "password": "4546646",
-    "confirm_password": "4546646"
+    "username": "navid_rezaei_84",
+    "email": "nr539118494@gmail.com",
+    "mobile": "09103914537",
+    "password": "123456",
+    "confirm_password": "123456"
 }
