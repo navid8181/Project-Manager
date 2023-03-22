@@ -40,6 +40,10 @@ const userShema = new mongoose.Schema({
     teams: {
         type: [mongoose.Types.ObjectId],
         default : []
+    },
+    token: {
+        type: String,
+        default : ""
     }
 
 

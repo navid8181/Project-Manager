@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 
+const jwt = require('jsonwebtoken');
+
 function expressValidatorMapper(error =[]) {
 
     let result = {}
@@ -22,7 +24,30 @@ function hashString(input) {
 }
 
 
+function tokenGenerator(payload = {}) {
+    console.log(payload);
+    const token = jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "365 days"})
+    return token
+}
+
+function VerifyJWTToken(token) {
+    const result = jwt.verify(token, process.env.SECRET_KEY)
+    const authLog = {
+        status: 401,
+        success: false,
+        message: "لطفا وارد حساب کاربری خود شوید"
+    }
+
+    if (!result?.username)
+    throw authLog;
+
+    return result;
+
+}
+
 module.exports = {
     expressValidatorMapper,
-    hashString
+    hashString,
+    tokenGenerator,
+    VerifyJWTToken
 }

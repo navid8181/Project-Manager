@@ -72,7 +72,7 @@ module.exports = class Application {
         try {
             this.#app.use(allRoutes); 
         } catch (error) {
-            next(error)
+          return  next(error)
         }
        
     }
