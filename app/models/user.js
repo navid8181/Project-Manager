@@ -10,6 +10,9 @@ const userShema = new mongoose.Schema({
     last_name: {
         type: String
     },
+    image_Profile: {
+        type: String
+    },
     username: {
         type: String,
         required: true,
@@ -47,7 +50,7 @@ const userShema = new mongoose.Schema({
     }
 
 
-}, {timestamps: true});
+}, {timestamps: true,strict : true });
 
 
 const userModel = mongoose.model("user", userShema);

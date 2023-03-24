@@ -58,7 +58,7 @@ module.exports = class Application {
             const status = err ?. status || 500;
 
             const message = err ?. message || "internal server error";
-            return res.status(status).json({status, succeed: false, message});
+            return res.status(status).json({status, succeed: false, message,err});
 
         })
     }

@@ -5,6 +5,7 @@ const { expressValidatorMapper } = require("../../modules/function");
 
  function express_Middleware_ValidatorMapper (req,res,next){
 
+    
     //const {username,password,email,mobile} = req.body;
   //  console.log(req.body);
     const result = validationResult (req);

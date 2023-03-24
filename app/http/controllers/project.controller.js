@@ -1,7 +1,19 @@
 class ProjectController {
 
 
-    createProject() {}
+    createProject(req,res,next) {
+
+        try {
+            
+            const  {title,text} = req.body;
+
+            
+
+        } catch (error) {
+            next(error)
+        }
+
+    }
 
 
     getAllProject() {}

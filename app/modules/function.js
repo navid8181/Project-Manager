@@ -2,6 +2,9 @@ const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
 
+const fs = require('fs');
+const path = require('path');
+
 function expressValidatorMapper(error =[]) {
 
     let result = {}
@@ -38,16 +41,32 @@ function VerifyJWTToken(token) {
         message: "لطفا وارد حساب کاربری خود شوید"
     }
 
-    if (!result?.username)
-    throw authLog;
+    if (! result ?. username) 
+        throw authLog;
+    
 
     return result;
 
 }
 
+
+function createUploadPathDirectory() {
+    let d = new Date();
+
+    const day = d.getDate();
+    const month = d.getMonth();
+    const year = d.getFullYear();
+
+    const uploadPath = path.join(__dirname,"..","..","public","upload",year.toString(),month.toString(),day.toString())
+    fs.mkdirSync(uploadPath,{recursive : true})
+
+    return path.join("public","upload",year.toString(),month.toString(),day.toString());
+}
+createUploadPathDirectory()
 module.exports = {
     expressValidatorMapper,
     hashString,
     tokenGenerator,
-    VerifyJWTToken
+    VerifyJWTToken,
+    createUploadPathDirectory
 }

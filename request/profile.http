@@ -2,3 +2,16 @@
 GET  http://localhost:3000/user/profile HTTP/1.1
 content-type: application/json
 Authorization:  {{$dotenv token}} 
+
+
+### update profile
+POST  http://localhost:3000/user/profile HTTP/1.1
+Authorization:  {{$dotenv token}} 
+content-type: application/json
+
+
+{
+    "first_name" : "navid",
+    "last_name" : "rezaei",
+    "skills" : ["unity","java_script","nodjs"]
+}
