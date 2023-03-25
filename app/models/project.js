@@ -21,12 +21,12 @@ const projectShema = new mongoose.Schema({
     },
     team: {
         type: mongoose.Types.ObjectId,
-        required: true
+        
 
     },
     private: {
         type: Boolean,
-        required: true
+        default : false
 
     }
 

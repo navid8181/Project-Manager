@@ -5,7 +5,9 @@ const {VerifyJWTToken} = require("../../modules/function");
 const checkLogin = async (req, res, next) => {
 
     try {
+     
         const authorization = req ?. headers ?. authorization;
+
         const authLog = {
             status: 401,
             success: false,
@@ -18,7 +20,7 @@ const checkLogin = async (req, res, next) => {
             throw authLog;
         
 
-            
+  
 
         let token = authorization.split(" ") ?. [1];
         if (! token) 

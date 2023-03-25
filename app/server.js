@@ -34,14 +34,20 @@ module.exports = class Application {
 
     async #configDataBase(DB_URL) {
         const mongoose = require('mongoose');
-
-        try {
-            const result = mongoose.connect(DB_URL);
-            console.log("connect to db is Successful");
-        } catch (error) {
-            throw error;
+        let isConnected = false
+        while  (!isConnected){
+            try {
+                console.log("try to connect to mongo db ....");
+                const result = await mongoose.connect(DB_URL);
+                isConnected = true
+                console.log("connect to db is Successful");
+            } catch (error) {
+               console.log("cant connect to db");
+            }
+    
         }
 
+     
 
     }
 

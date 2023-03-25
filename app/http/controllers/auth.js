@@ -19,7 +19,7 @@ class AuthController {
     }
 
     async login(req, res, next) {
-        console.log(req.headers);
+       // console.log(req.headers);
         try {
             const {username, password} = req.body;
 

@@ -1,0 +1,13 @@
+### get profile
+
+### update profile
+POST  http://localhost:3000/project/create-project HTTP/1.1
+Authorization:  {{$dotenv token}} 
+content-type: application/json
+
+
+{
+    "title" : "Game server",
+    "text" : "creaet game server app with socket"
+  
+}
