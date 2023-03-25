@@ -28,6 +28,10 @@ const projectShema = new mongoose.Schema({
         type: Boolean,
         default : false
 
+    },
+    tags : {
+        type : [String],
+        default : []
     }
 
 

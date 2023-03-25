@@ -8,11 +8,11 @@ class ProjectController {
         try {
        
             
-            const  {title,text,image} = req.body;
+            const  {title,text,image,tags} = req.body;
 
             const owner = req.user._id
 
-            const result =  await projectModel.create({text,title,owner,image});
+            const result =  await projectModel.create({text,title,owner,image,tags});
 
             if (!result)
             throw {
