@@ -35,7 +35,28 @@ class ProjectController {
     }
 
 
-    getAllProject() {}
+   async getAllProject(req,res,next) {
+
+        try {
+
+            const owner= req.user._id;
+
+            const projects = await projectModel.find({owner});
+
+            res.status(200).json({
+
+                status : 200,
+                Success : true,
+                projects
+
+            })
+
+            
+        } catch (error) {
+            next(error)
+        }
+
+    }
 
     getProjectById() {}
 
