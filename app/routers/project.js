@@ -8,9 +8,16 @@ const fileUpload = require('express-fileupload');
 const router = require('express').Router();
 
 router.post("/create-project", fileUpload(), checkLogin, uploadFile, createProjectValidator(), express_Middleware_ValidatorMapper, projectController.createProject)
-router.post("/list", checkLogin, projectController.getAllProject)
-router.post("/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.getProjectById)
-router.post("/remove/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.removeProject)
+router.get("/list", checkLogin, projectController.getAllProject)
+
+
+const getProjectById = (req,res,next) => projectController.getProjectById(req, res, next);
+
+
+router.get("/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper,getProjectById )
+
+
+router.delete("/remove/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.removeProject)
 router.post("/edit/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.updateProject)
 
 module.exports = {

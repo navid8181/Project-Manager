@@ -1,6 +1,6 @@
-### get profile
 
-### update profile
+
+### create Project
 POST  http://localhost:3000/project/create-project HTTP/1.1
 Authorization:  {{$dotenv token}} 
 content-type: application/json
@@ -11,3 +11,15 @@ content-type: application/json
     "text" : "creaet game server app with socket"
   
 }
+
+
+
+
+### get all Project
+GET   http://localhost:3000/project/list HTTP/1.1
+Authorization:  {{$dotenv token}} 
+
+
+### get  Project By ID
+GET   http://localhost:3000/project/641e15b56958fb5ce362028e HTTP/1.1
+Authorization:  {{$dotenv token}} 

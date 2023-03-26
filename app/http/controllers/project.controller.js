@@ -1,7 +1,13 @@
-const {projectModel} = require("../../models/project");
 
+const {projectModel} = require("../../models/project");
+const autoBind = require('auto-bind');
 class ProjectController {
 
+    constructor() {
+
+       autoBind(this)
+
+    }
 
     async createProject(req, res, next) {
 
@@ -77,6 +83,8 @@ class ProjectController {
 
             const owner = req.user._id;
             const projectID = req.params.id;
+            console.log(this);
+
 
             const project = await this.findProject(owner, projectID)
 
@@ -103,20 +111,18 @@ class ProjectController {
             const projectID = req.params.id;
 
             await this.findProject(owner, projectID)
+
+            const result = await projectModel.deleteOne({_id: projectID})
+
+            if (result.deletedCount == 0) 
+                throw {
+                    status : 400,
+                    message : "پروژه حذف نشد"
+                }
             
-         const result =  await projectModel.deleteOne({_id : projectID})
 
-         if (result.deletedCount == 0)
-         throw {
-            status : 400,
-            message : "پروژه حذف نشد"
-         }
 
-         res.status(200).json({
-            status : 200,
-            Success : true,
-            message : "پروژه با موفقیت حذف شد"
-         })
+            res.status(200).json({status: 200, Success: true, message: "پروژه با موفقیت حذف شد"})
 
         } catch (error) {
             next(error)
