@@ -21,5 +21,23 @@ Authorization:  {{$dotenv token}}
 
 
 ### get  Project By ID
-GET   http://localhost:3000/project/641e15b56958fb5ce362028e HTTP/1.1
+GET   http://localhost:3000/project/641efc09f94ff65d2aed425d HTTP/1.1
 Authorization:  {{$dotenv token}} 
+
+
+
+### remove  Project By ID
+DELETE    http://localhost:3000/project/remove/641f0f6f95a59df5d434367e HTTP/1.1
+Authorization:  {{$dotenv token}} 
+
+
+### edit  Project By ID
+PUT     http://localhost:3000/project/edit/641efc09f94ff65d2aed425d HTTP/1.1
+Authorization:  {{$dotenv token}} 
+content-type: application/json
+
+{
+    "title" : "game server",
+    "text" : "lorem20f,lwfkfwlwkfwwfwf",
+    "tags" : [null,"a"]
+}

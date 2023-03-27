@@ -28,7 +28,7 @@ function hashString(input) {
 
 
 function tokenGenerator(payload = {}) {
-    console.log(payload);
+   // console.log(payload);
     const token = jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "365 days"})
     return token
 }
@@ -45,6 +45,7 @@ function VerifyJWTToken(token) {
         throw authLog;
     
 
+
     return result;
 
 }
@@ -57,16 +58,28 @@ function createUploadPathDirectory() {
     const month = d.getMonth();
     const year = d.getFullYear();
 
-    const uploadPath = path.join(__dirname,"..","..","public","upload",year.toString(),month.toString(),day.toString())
-    fs.mkdirSync(uploadPath,{recursive : true})
+    const uploadPath = path.join(__dirname, "..", "..", "public", "upload", year.toString(), month.toString(), day.toString())
+    fs.mkdirSync(uploadPath, {recursive: true})
 
-    return path.join("public","upload",year.toString(),month.toString(),day.toString());
+    return path.join("public", "upload", year.toString(), month.toString(), day.toString());
 }
-createUploadPathDirectory()
+// createUploadPathDirectory()
+
+function createLinkPath(path,req) {
+   
+    const filePath = path.replaceAll("\\", "/").substring(7);
+  
+    const linkPath = req.protocol + "://"+ req.get("host") + "/" + filePath; 
+
+    return linkPath
+    
+}
+
 module.exports = {
     expressValidatorMapper,
     hashString,
     tokenGenerator,
     VerifyJWTToken,
-    createUploadPathDirectory
+    createUploadPathDirectory,
+    createLinkPath
 }

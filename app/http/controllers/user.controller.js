@@ -1,4 +1,5 @@
 const {userModel} = require("../../models/user");
+const { createLinkPath } = require("../../modules/function");
 
 class UserController {
 
@@ -74,7 +75,7 @@ class UserController {
         try {
      
             const userID = req.user._id;
-            console.log();
+         //   console.log();
             if (!req.file || Object.keys(req.file).length == 0) 
                 throw {
                     status : 400,
@@ -82,8 +83,8 @@ class UserController {
                 }
              
 
-            const filePath = req.file ?. path.replaceAll("\\", "/").substring(7);
-                const linkPath = req.protocol + "://"+ req.get("host") + "/" + filePath; 
+        
+                const linkPath = createLinkPath(req?.file?.path,req);
                 
             const result = await userModel.updateOne({
                 _id: userID

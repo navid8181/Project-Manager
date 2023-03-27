@@ -20,7 +20,7 @@ const uploadFile = async (req, res, next) => {
         const image = req.files.image;
 
         const imagePath = path.join(createUploadPathDirectory(), Date.now()+path.extname(image.name))
-            req.body.image = imagePath
+            req.body.image = imagePath;
         const uploadPath = path.join(__dirname, "..", "..", imagePath)
         image.mv(uploadPath, (err) => {
             if (err) 

@@ -33,7 +33,7 @@ const checkLogin = async (req, res, next) => {
         const user = await userModel.findOne({
             username
         }, {password: 0,token : 0})
-        console.log(result);
+       // console.log(result);
         if (! user) 
             throw authLog;
         

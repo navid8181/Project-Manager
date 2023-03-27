@@ -18,8 +18,9 @@ router.get("/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorM
 
 
 router.delete("/remove/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.removeProject)
-router.post("/edit/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.updateProject)
+router.put("/edit/:id", checkLogin, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.updateProject)
 
+router.patch("/edit-Profile-image/:id",fileUpload(), checkLogin,uploadFile, MongoIdValidator(), express_Middleware_ValidatorMapper, projectController.updateProjectImage)
 module.exports = {
     projectRouter: router
 }
