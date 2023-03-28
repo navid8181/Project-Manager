@@ -1,0 +1,44 @@
+
+
+### create team
+POST  http://localhost:3000/team/create HTTP/1.1
+Authorization:  {{$dotenv token}} 
+content-type: application/json
+
+
+{
+    "name" : "best grupe",
+    "description" : "creaet game server app with socket",
+    "username": "dad_afdwfw"
+  
+}
+
+
+
+
+### get all Project
+GET   http://localhost:3000/team/list HTTP/1.1
+Authorization:  {{$dotenv token}} 
+
+
+### get  team By ID
+GET   http://localhost:3000/team/641efc09f94ff65d2aed425d HTTP/1.1
+Authorization:  {{$dotenv token}} 
+
+
+
+### remove  Project By ID
+DELETE    http://localhost:3000/project/remove/641f0f6f95a59df5d434367e HTTP/1.1
+Authorization:  {{$dotenv token}} 
+
+
+### edit  Project By ID
+PUT     http://localhost:3000/project/edit/641efc09f94ff65d2aed425d HTTP/1.1
+Authorization:  {{$dotenv token}} 
+content-type: application/json
+
+{
+    "title" : "game server",
+    "text" : "lorem20f,lwfkfwlwkfwwfwf",
+    "tags" : [null,"a"]
+}

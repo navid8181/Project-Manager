@@ -10,10 +10,10 @@ function registerValidator() {
 
                 const userNameRegex = /^[a-z]+[a-z0-9\.\_]{2,}/gi
 
-                const result = value.match(userNameRegex)
+                const result = value?.match(userNameRegex)
 
 
-                if (result[0] === value) {
+                if ( result?.[0] === value) {
 
                     const queryResult = await userModel.find({username: value})
 

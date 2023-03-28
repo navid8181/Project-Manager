@@ -10,6 +10,11 @@ const teamShema = new mongoose.Schema({
     description: {
         type: String
     },
+
+    username : {
+        type : String, required : true,unique : true
+    },
+
     users: {
         type: [mongoose.Types.ObjectId],
         default: []
